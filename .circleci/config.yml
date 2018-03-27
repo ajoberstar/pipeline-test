@@ -1,0 +1,53 @@
+version: 2
+jobs:
+  commit-lts:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - run:
+          name: Compile and test
+          command: ./gradlew clean check lintGradle
+  commit-9:
+    docker:
+      - image: circleci/openjdk:9-jdk
+      - run:
+          name: Compile and test
+          command: ./gradlew clean check
+  commit-10:
+    docker:
+      - image: circleci/openjdk:10-jdk
+      - run:
+          name: Compile and test
+          command: ./gradlew clean check
+  publish:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - run:
+          name: Compile and test
+          command: ./gradlew clean check
+      - run:
+          name: Publish Artifacts
+          command: ./gradlew reckonTagPush publish publishPlugins gitPublishPush
+workflows:
+  version: 2
+  main:
+    jobs:
+      - commit-lts
+      - commit-9:
+          requires:
+            - commit-lts
+      - commit-10:
+          requires:
+            - commit-lts
+      - request-publish:
+          type: approval
+          requires:
+            - commit-lts
+            - commit-9
+            - commit-10
+      - publish:
+          requires:
+            - request-publish
