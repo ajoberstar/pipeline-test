@@ -1,0 +1,25 @@
+plugins {
+  id 'org.ajoberstar.defaults' version '0.8.3'
+  id 'java-gradle-plugin'
+  id 'java'
+}
+
+group = 'org.ajoberstar'
+
+sourceCompatibility = '1.8'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile 'org.slf4j:slf4j-api:1.7.25'
+}
+
+model {
+  bintray {
+    owner = 'ajoberstar'
+    repo = 'test'
+    pkg = 'pipeline-test'
+  }
+}
