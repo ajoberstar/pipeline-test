@@ -5,13 +5,25 @@ jobs:
       - image: circleci/openjdk:8-jdk
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
+            - v1-gradle--
       - run:
           name: Compile and test
           command: ./gradlew clean check lintGradle
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
   commit-9:
     docker:
       - image: circleci/openjdk:9-jdk
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
       - run:
           name: Compile and test
           command: ./gradlew clean check
@@ -19,6 +31,10 @@ jobs:
     docker:
       - image: circleci/openjdk:10-jdk
     steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
       - run:
           name: Compile and test
           command: ./gradlew clean check
