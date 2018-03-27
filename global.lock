@@ -1,0 +1,68 @@
+{
+    "compile": {
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.25",
+            "requested": "1.7.25"
+        }
+    },
+    "compileClasspath": {
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.25",
+            "requested": "1.7.25"
+        }
+    },
+    "default": {
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.25",
+            "requested": "1.7.25"
+        }
+    },
+    "jacocoAgent": {
+        "org.jacoco:org.jacoco.agent": {
+            "locked": "0.7.9",
+            "requested": "0.7.9"
+        }
+    },
+    "jacocoAnt": {
+        "org.jacoco:org.jacoco.ant": {
+            "locked": "0.7.9",
+            "requested": "0.7.9"
+        }
+    },
+    "runtime": {
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.25",
+            "requested": "1.7.25"
+        }
+    },
+    "runtimeClasspath": {
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.25",
+            "requested": "1.7.25"
+        }
+    },
+    "testCompile": {
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.25",
+            "requested": "1.7.25"
+        }
+    },
+    "testCompileClasspath": {
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.25",
+            "requested": "1.7.25"
+        }
+    },
+    "testRuntime": {
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.25",
+            "requested": "1.7.25"
+        }
+    },
+    "testRuntimeClasspath": {
+        "org.slf4j:slf4j-api": {
+            "locked": "1.7.25",
+            "requested": "1.7.25"
+        }
+    }
+}
