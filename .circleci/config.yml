@@ -11,12 +11,14 @@ jobs:
   commit-9:
     docker:
       - image: circleci/openjdk:9-jdk
+    steps:
       - run:
           name: Compile and test
           command: ./gradlew clean check
   commit-10:
     docker:
       - image: circleci/openjdk:10-jdk
+    steps:
       - run:
           name: Compile and test
           command: ./gradlew clean check
