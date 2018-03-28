@@ -1,19 +1,20 @@
+defaults: &defaults
+  steps:
+    - checkout
+    - restore_cache:
+        keys:
+          - v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
+          - v1-gradle--
+    - run:
+        name: Compile and test
+        command: ./gradlew clean check lintGradle
+    - save_cache:
+        paths:
+          - ~/.gradle
+        key: v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
+
 version: 2
 jobs:
-  defaults: &defaults
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
-            - v1-gradle--
-      - run:
-          name: Compile and test
-          command: ./gradlew clean check lintGradle
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
   commit-java-lts:
     <<: *defaults
     docker:
