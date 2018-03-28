@@ -41,7 +41,6 @@ jobs:
       - run:
           name: Publish Artifacts
           command: ./gradlew reckonTagPush publish publishPlugins gitPublishPush
-          context: ajoberstar
 workflows:
   version: 2
   main:
@@ -62,3 +61,4 @@ workflows:
       - publish:
           requires:
             - request-publish
+          context: ajoberstar
