@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  commit-lts:
+  commit-java-lts:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
@@ -16,7 +16,7 @@ jobs:
           paths:
             - ~/.gradle
           key: v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
-  commit-9:
+  commit-java-9:
     docker:
       - image: circleci/openjdk:9-jdk
     steps:
@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Compile and test
           command: ./gradlew clean check
-  commit-10:
+  commit-java-10:
     docker:
       - image: circleci/openjdk:10-jdk
     steps:
@@ -43,6 +43,9 @@ jobs:
       - image: circleci/openjdk:8-jdk
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
       - run:
           name: Compile and test
           command: ./gradlew clean check
@@ -53,19 +56,19 @@ workflows:
   version: 2
   main:
     jobs:
-      - commit-lts
-      - commit-9:
+      - commit-java-lts
+      - commit-java-9:
           requires:
-            - commit-lts
-      - commit-10:
+            - commit-java-lts
+      - commit-java-10:
           requires:
-            - commit-lts
+            - commit-java-lts
       - request-publish:
           type: approval
           requires:
-            - commit-lts
-            - commit-9
-            - commit-10
+            - commit-java-lts
+            - commit-java-9
+            - commit-java-10
       - publish:
           requires:
             - request-publish
