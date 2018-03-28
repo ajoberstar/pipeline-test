@@ -12,6 +12,12 @@ defaults: &defaults
         paths:
           - ~/.gradle
         key: v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
+tags-only: &tags-only
+  branches:
+    ignore: /.*/
+  tags:
+    only: /^\d+\.\d+\.\d(?:-.+)?$/
+
 
 version: 2
 jobs:
@@ -58,7 +64,11 @@ workflows:
             - commit-java-lts
             - commit-java-9
             - commit-java-10
+          filters:
+            <<: *tags-only
       - publish:
           requires:
             - request-publish
           context: ajoberstar
+          filters:
+            <<: *tags-only
