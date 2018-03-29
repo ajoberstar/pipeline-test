@@ -8,6 +8,9 @@ defaults: &defaults
     - run:
         name: Compile and test
         command: ./gradlew clean check lintGradle
+    - store_test_results:
+        path: build/all-test-results
+        when: always
     - save_cache:
         paths:
           - ~/.gradle
@@ -22,7 +25,6 @@ tags-only: &tags-only
       ignore: /.*/
     tags:
       only: /^\d+\.\d+\.\d(?:-.+)?$/
-
 
 version: 2
 jobs:
