@@ -9,7 +9,7 @@ defaults: &defaults
         name: Compile and test
         command: ./gradlew clean check lintGradle
     - store_test_results:
-        path: build/all-test-results
+        path: build/test-results
         when: always
     - save_cache:
         paths:
