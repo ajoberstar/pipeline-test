@@ -13,13 +13,15 @@ defaults: &defaults
           - ~/.gradle
         key: v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
 branches-and-tags: &branches-and-tags
-  tags:
-    only: /^\d+\.\d+\.\d(?:-.+)?$/
+  filters:
+    tags:
+      only: /^\d+\.\d+\.\d(?:-.+)?$/
 tags-only: &tags-only
-  branches:
-    ignore: /.*/
-  tags:
-    only: /^\d+\.\d+\.\d(?:-.+)?$/
+  filters:
+    branches:
+      ignore: /.*/
+    tags:
+      only: /^\d+\.\d+\.\d(?:-.+)?$/
 
 
 version: 2
@@ -55,23 +57,19 @@ workflows:
   main:
     jobs:
       - commit-java-lts:
-          filters:
-            <<: *branches-and-tags
+          <<: *branches-and-tags
       - commit-java-9:
+          <<: *branches-and-tags
           requires:
             - commit-java-lts
-          filters:
-            <<: *branches-and-tags
       - commit-java-10:
+          <<: *branches-and-tags
           requires:
             - commit-java-lts
-          filters:
-            <<: *branches-and-tags
       - publish:
+          <<: *tags-only
           requires:
             - commit-java-lts
             - commit-java-9
             - commit-java-10
           context: ajoberstar
-          filters:
-            <<: *tags-only
