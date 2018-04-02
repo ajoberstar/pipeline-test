@@ -48,13 +48,7 @@ jobs:
             - v1-gradle-{{ .Revision }}
       - run:
           name: Update dependencies
-          command: ./gradlew dependencies --write-locks
-      - run:
-          name: Commit and push changes
-          command: >
-            git diff --quiet ||
-            git commit -am 'Update dependency lockfile' -m 'Executed on Circle CI.' &&
-            git push -f origin HEAD:refs/heads/update-dependency-lock
+          command: ./gradlew dependencies dependencyLockPush --write-locks
   build-java-8:
     <<: *defaults
     docker:
