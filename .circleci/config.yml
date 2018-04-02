@@ -52,9 +52,9 @@ jobs:
       - run:
           name: Commit and push changes
           command: >
-          git diff --quiet ||
-          git commit -am 'Update dependency lockfile' -m 'Executed on Circle CI.' &&
-          git push -f origin HEAD:refs/heads/update-dependency-lock
+            git diff --quiet ||
+            git commit -am 'Update dependency lockfile' -m 'Executed on Circle CI.' &&
+            git push -f origin HEAD:refs/heads/update-dependency-lock
   build-java-8:
     <<: *defaults
     docker:
