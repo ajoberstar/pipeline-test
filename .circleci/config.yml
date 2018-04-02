@@ -51,7 +51,7 @@ jobs:
           command: ./gradlew dependencies --write-locks
       - run:
           name: Diff lockfiles
-          command: git diff
+          command: git --no-pager diff
   build-java-8:
     <<: *defaults
     docker:
