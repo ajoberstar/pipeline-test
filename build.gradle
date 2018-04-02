@@ -1,6 +1,4 @@
 plugins {
-  id 'org.ajoberstar.defaults' version '0.8.3'
-  id 'java-gradle-plugin'
   id 'java'
 }
 
@@ -12,14 +10,10 @@ repositories {
   mavenCentral()
 }
 
-dependencies {
-  compile 'org.slf4j:slf4j-api:1.7.25'
+dependencyLocking {
+  lockAllConfigurations()
 }
 
-model {
-  bintray {
-    owner = 'ajoberstar'
-    repo = 'test'
-    pkg = 'pipeline-test'
-  }
+dependencies {
+  compile 'org.slf4j:slf4j-api:1.7.25'
 }

@@ -3,18 +3,13 @@ defaults: &defaults
     - checkout
     - restore_cache:
         keys:
-          - v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
-          - v1-gradle--
+          - v1-gradle-{{ .Revision }}
     - run:
         name: Compile and test
-        command: ./gradlew clean check lintGradle
+        command: ./gradlew clean check
     - store_test_results:
         path: build/test-results
         when: always
-    - save_cache:
-        paths:
-          - ~/.gradle
-        key: v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
 branches-and-tags: &branches-and-tags
   filters:
     tags:
@@ -28,7 +23,22 @@ tags-only: &tags-only
 
 version: 2
 jobs:
-  commit-java-lts:
+  cache-dependencies:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-gradle-{{ .Revision }}
+      - run:
+          name: Download dependencies
+          command: ./gradlew dependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-gradle-{{ .Revision }}
+  commit-java-8:
     <<: *defaults
     docker:
       - image: circleci/openjdk:8-jdk
@@ -47,31 +57,32 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-gradle-{{ checksum "global.lock" }}-{{ checksum "build.gradle" }}
-      - run:
-          name: Compile and test
-          command: ./gradlew clean check
+            - v1-gradle-{{ .Revision }}
       - run:
           name: Publish Artifacts
-          command: ./gradlew publish publishPlugins gitPublishPush
+          command: ./gradlew publish gitPublishPush
 workflows:
   version: 2
   main:
     jobs:
-      - commit-java-lts:
+      - cache-dependencies:
           <<: *branches-and-tags
+      - commit-java-8:
+          <<: *branches-and-tags
+          requires:
+            - cache-dependencies
       - commit-java-9:
           <<: *branches-and-tags
           requires:
-            - commit-java-lts
+            - cache-dependencies
       - commit-java-10:
           <<: *branches-and-tags
           requires:
-            - commit-java-lts
+            - cache-dependencies
       - publish:
           <<: *tags-only
           requires:
-            - commit-java-lts
+            - commit-java-8
             - commit-java-9
             - commit-java-10
           context: ajoberstar
