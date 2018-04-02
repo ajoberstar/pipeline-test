@@ -52,9 +52,9 @@ jobs:
       - run:
           name: Git prep
           command: |
-          git config --global credential.helper '!f() { echo "username=$GRGIT_USER"; }; f'
-          git config --global user.name 'Circle CI'
-          git config --global user.email 'circleci@ajoberstar.org'
+            git config --global credential.helper '!f() { echo "username=$GRGIT_USER"; }; f'
+            git config --global user.name 'Circle CI'
+            git config --global user.email 'circleci@ajoberstar.org'
       - run:
           name: Commit lockfile
           command: >
