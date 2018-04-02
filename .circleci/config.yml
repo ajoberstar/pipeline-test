@@ -38,15 +38,32 @@ jobs:
           paths:
             - ~/.gradle
           key: v1-gradle-{{ .Revision }}
-  commit-java-8:
+  update-dependencies:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-gradle-{{ .Revision }}
+      - run:
+          name: Update dependencies
+          command: ./gradlew dependencies --write-locks
+      - run:
+          name: Commit and push changes
+          command: <
+          git diff --quiet ||
+          git commit -am 'Update dependency lockfile' -m 'Executed on Circle CI.' &&
+          git push -f origin HEAD:refs/heads/update-dependency-lock
+  build-java-8:
     <<: *defaults
     docker:
       - image: circleci/openjdk:8-jdk
-  commit-java-9:
+  build-java-9:
     <<: *defaults
     docker:
       - image: circleci/openjdk:9-jdk
-  commit-java-10:
+  build-java-10:
     <<: *defaults
     docker:
       - image: circleci/openjdk:10-jdk
@@ -67,22 +84,31 @@ workflows:
     jobs:
       - cache-dependencies:
           <<: *branches-and-tags
-      - commit-java-8:
+      - build-java-8:
           <<: *branches-and-tags
           requires:
             - cache-dependencies
-      - commit-java-9:
+      - build-java-9:
           <<: *branches-and-tags
           requires:
             - cache-dependencies
-      - commit-java-10:
+      - build-java-10:
           <<: *branches-and-tags
           requires:
             - cache-dependencies
       - publish:
           <<: *tags-only
           requires:
-            - commit-java-8
-            - commit-java-9
-            - commit-java-10
+            - build-java-8
+            - build-java-9
+            - build-java-10
           context: ajoberstar
+  dependencies:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only: master
+    jobs:
+      - update-dependencies
