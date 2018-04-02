@@ -48,7 +48,7 @@ jobs:
             - v1-gradle-{{ .Revision }}
       - run:
           name: Update dependencies
-          command: ./gradlew dependencies dependencyLockPush --write-locks
+          command: ./gradlew dependencies dependencyLockPush --write-locks --stacktrace
   build-java-8:
     <<: *defaults
     docker:
