@@ -1,11 +1,15 @@
 plugins {
-  id 'org.ajoberstar.defaults' version '0.9.0-milestone.1'
+  id 'org.ajoberstar.defaults' version '0.9.0-milestone.2'
   id 'java'
 }
 
 group = 'org.ajoberstar'
 
 sourceCompatibility = '1.8'
+
+dependencyLocking {
+  lockAllConfigurations()
+}
 
 repositories {
   mavenCentral()
