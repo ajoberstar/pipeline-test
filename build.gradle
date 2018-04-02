@@ -1,6 +1,12 @@
+buildscript {
+  dependencies { classpath 'org.ajoberstar:gradle-defaults:0.9.0-milestone.0.3+b0734c96d20cf58a8e356e27079d3d40fe3bd10e' }
+}
 plugins {
+  // id 'org.ajoberstar.defaults' version '0.9.0-milestone.0.2+56d77ea53b4990da40ac2a9a9a8fbec9c0a81411'
   id 'java'
 }
+
+apply plugin: 'org.ajoberstar.defaults'
 
 group = 'org.ajoberstar'
 
@@ -15,5 +21,13 @@ dependencyLocking {
 }
 
 dependencies {
-  compile 'org.slf4j:slf4j-api:1.7.25'
+  compile 'org.slf4j:slf4j-api:+'
+}
+
+model {
+  bintray {
+    owner = 'ajoberstar'
+    repo = 'test'
+    pkg = 'pipeline-test'
+  }
 }
