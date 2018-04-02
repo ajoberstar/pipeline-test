@@ -4,6 +4,8 @@ defaults: &defaults
     - restore_cache:
         keys:
           - v1-gradle-{{ .Revision }}
+    - attach_workspace:
+        at: gradle/dependency-locks
     - run:
         name: Compile and test
         command: ./gradlew clean check
@@ -38,6 +40,10 @@ jobs:
           paths:
             - ~/.gradle
           key: v1-gradle-{{ .Revision }}
+      - persist_to_workspace:
+          root: gradle/dependency-locks
+          paths:
+            - '*'
   update-dependencies:
     docker:
       - image: circleci/openjdk:8-jdk
@@ -52,6 +58,10 @@ jobs:
       - run:
           name: Diff lockfiles
           command: git --no-pager diff
+      - persist_to_workspace:
+          root: gradle/dependency-locks
+          paths:
+            - '*'
   build-java-8:
     <<: *defaults
     docker:
