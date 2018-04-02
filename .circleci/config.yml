@@ -51,10 +51,7 @@ jobs:
           command: ./gradlew dependencies --write-locks
       - run:
           name: Diff lockfiles
-          command: git diff > ~/dependencies.diff
-      - store_artifacts:
-          path: ~/dependencies.diff
-          destination: dependencies
+          command: git diff
   build-java-8:
     <<: *defaults
     docker:
