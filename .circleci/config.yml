@@ -50,19 +50,11 @@ jobs:
           name: Update dependencies
           command: ./gradlew dependencies --write-locks
       - run:
-          name: Git prep
-          command: |
-            git config --global credential.helper '!f() { echo "username=$GRGIT_USER"; }; f'
-            git config --global user.name 'Circle CI'
-            git config --global user.email 'circleci@ajoberstar.org'
-      - run:
-          name: Commit lockfile
-          command: >
-            git diff --quiet ||
-            git commit -am 'Update dependency lockfile' -m 'Executed by Circle CI.'
-      - run:
-          name: Commit and push lockfile
-          command: git push --force $CIRCLE_REPOSITORY_URL HEAD:refs/heads/update-dependency-lock
+          name: Diff lockfiles
+          command: git diff > ~/dependencies.diff
+      - store_artifacts:
+          path: ~/dependencies.diff
+          destination: dependencies
   build-java-8:
     <<: *defaults
     docker:
