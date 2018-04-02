@@ -121,5 +121,13 @@ workflows:
       - update-dependencies
   temp:
     jobs:
-      - update-dependencies:
-          context: ajoberstar
+      - update-dependencies
+      - build-java-8:
+          requires:
+            - update-dependencies
+      - build-java-9:
+          requires:
+            - update-dependencies
+      - build-java-10:
+          requires:
+            - update-dependencies
