@@ -15,13 +15,13 @@ defaults: &defaults
 branches-and-tags: &branches-and-tags
   filters:
     tags:
-      only: /^\d+\.\d+\.\d(?:-.+)?$/
+      only: /^\d+\.\d+\.\d+(?:-.+)?$/
 tags-only: &tags-only
   filters:
     branches:
       ignore: /.*/
     tags:
-      only: /^\d+\.\d+\.\d(?:-.+)?$/
+      only: /^\d+\.\d+\.\d+(?:-.+)?$/
 
 version: 2
 jobs:
@@ -84,7 +84,7 @@ jobs:
             - v1-gradle-{{ .Revision }}
       - run:
           name: Decrypt Gradle properties
-          command: openssl aes-256-cbc -d -in gradle.properties.enc -out gradle.properties -k $GRADLE_PROPS_KEY
+          command: openssl aes-256-cbc -d -in gradle.properties.enc -out gradle.properties -k '$GRADLE_PROPS_KEY'
       - run:
           name: Publish Artifacts
           command: ./gradlew publish publishPlugins gitPublishPush
