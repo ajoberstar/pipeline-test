@@ -7,6 +7,9 @@ defaults: &defaults
     - attach_workspace:
         at: gradle/dependency-locks
     - run:
+        name: Print Gradle environment
+        command: ./gradlew --version
+    - run:
         name: Compile and test
         command: ./gradlew clean check --continue --stacktrace
     - store_test_results:
