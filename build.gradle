@@ -1,16 +1,11 @@
 plugins {
-  id 'org.ajoberstar.defaults' version '0.9.0-milestone.2'
+  // id 'org.ajoberstar.defaults' version '0.9.0'
   id 'java'
-  id 'java-gradle-plugin'
 }
 
 group = 'org.ajoberstar'
 
 sourceCompatibility = '1.8'
-
-dependencyLocking {
-  lockAllConfigurations()
-}
 
 repositories {
   mavenCentral()
@@ -21,25 +16,4 @@ dependencies {
   compile 'org.slf4j:slf4j-api:+'
   runtime 'ch.qos.logback:logback-core:+'
   compile 'org.apache.commons:commons-lang3:[3.0,4.0)'
-}
-
-model {
-  bintray {
-    owner = 'ajoberstar'
-    repo = 'test'
-    pkg = 'pipeline-test'
-  }
-}
-
-pluginBundle {
-    website = 'https://github.com/ajoberstar/pipeline-test'
-    vcsUrl = 'https://github.com/ajoberstar/pipeline-test.git'
-    description = 'Not a plugin. Just for testing.'
-    plugins {
-        pipelinePlugin {
-            id = 'org.ajoberstar.pipeline-test'
-            displayName = 'Not a plugin. Just for testing.'
-            tags = ['dummy']
-        }
-    }
 }
