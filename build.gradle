@@ -1,6 +1,9 @@
 plugins {
   id 'org.ajoberstar.defaults' version '0.10.0-milestone.9'
   id 'java'
+  id 'java-gradle-plugin'
+  // TODO remove when Gradle dependency locking is available
+  id 'nebula.dependency-lock' version '5.0.4'
 }
 
 group = 'org.ajoberstar'
@@ -17,4 +20,10 @@ dependencies {
   runtime 'ch.qos.logback:logback-core:+'
   compile 'org.apache.commons:commons-lang3:[3.0,4.0)'
   testCompile 'junit:junit:4.12'
+}
+
+stutter {
+  java(8) {
+    compatibleRange '4.6'
+  }
 }

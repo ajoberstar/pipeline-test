@@ -1,0 +1,128 @@
+{
+    "compile": {
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.7",
+            "requested": "[3.0,4.0)"
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.8.0-beta2",
+            "requested": "+"
+        }
+    },
+    "compileClasspath": {
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.7",
+            "requested": "[3.0,4.0)"
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.8.0-beta2",
+            "requested": "+"
+        }
+    },
+    "default": {
+        "ch.qos.logback:logback-core": {
+            "locked": "1.3.0-alpha4",
+            "requested": "+"
+        },
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.7",
+            "requested": "[3.0,4.0)"
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.8.0-beta2",
+            "requested": "+"
+        }
+    },
+    "runtime": {
+        "ch.qos.logback:logback-core": {
+            "locked": "1.3.0-alpha4",
+            "requested": "+"
+        },
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.7",
+            "requested": "[3.0,4.0)"
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.8.0-beta2",
+            "requested": "+"
+        }
+    },
+    "runtimeClasspath": {
+        "ch.qos.logback:logback-core": {
+            "locked": "1.3.0-alpha4",
+            "requested": "+"
+        },
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.7",
+            "requested": "[3.0,4.0)"
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.8.0-beta2",
+            "requested": "+"
+        }
+    },
+    "testCompile": {
+        "junit:junit": {
+            "locked": "4.12",
+            "requested": "4.12"
+        },
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.7",
+            "requested": "[3.0,4.0)"
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.8.0-beta2",
+            "requested": "+"
+        }
+    },
+    "testCompileClasspath": {
+        "junit:junit": {
+            "locked": "4.12",
+            "requested": "4.12"
+        },
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.7",
+            "requested": "[3.0,4.0)"
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.8.0-beta2",
+            "requested": "+"
+        }
+    },
+    "testRuntime": {
+        "ch.qos.logback:logback-core": {
+            "locked": "1.3.0-alpha4",
+            "requested": "+"
+        },
+        "junit:junit": {
+            "locked": "4.12",
+            "requested": "4.12"
+        },
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.7",
+            "requested": "[3.0,4.0)"
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.8.0-beta2",
+            "requested": "+"
+        }
+    },
+    "testRuntimeClasspath": {
+        "ch.qos.logback:logback-core": {
+            "locked": "1.3.0-alpha4",
+            "requested": "+"
+        },
+        "junit:junit": {
+            "locked": "4.12",
+            "requested": "4.12"
+        },
+        "org.apache.commons:commons-lang3": {
+            "locked": "3.7",
+            "requested": "[3.0,4.0)"
+        },
+        "org.slf4j:slf4j-api": {
+            "locked": "1.8.0-beta2",
+            "requested": "+"
+        }
+    }
+}
