@@ -50,10 +50,10 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - global.lock
-            - .stutter
-            - */.stutter
-            - */*/.stutter
+            - 'global.lock'
+            - '.stutter'
+            - '*/.stutter'
+            - '*/*/.stutter'
   update-dependencies:
     docker:
       - image: ajoberstar/circleci-openjdk-gradle:8-jdk
@@ -79,10 +79,10 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - global.lock
-            - .stutter
-            - */.stutter
-            - */*/.stutter
+            - 'global.lock'
+            - '.stutter'
+            - '*/.stutter'
+            - '*/*/.stutter'
   build-java-8:
     <<: *defaults
     docker:
