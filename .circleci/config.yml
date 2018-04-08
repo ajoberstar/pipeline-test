@@ -145,7 +145,7 @@ workflows:
             branches:
               only: master
     jobs:
-      - update-dependencies:
+      - update-dependencies
       - build-java-8:
           requires:
             - update-dependencies
