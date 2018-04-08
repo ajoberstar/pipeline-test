@@ -138,12 +138,12 @@ workflows:
             - build-java-10
           context: ajoberstar
   nightly-deps:
-    # triggers:
-    #   - schedule:
-    #       cron: "0 3 * * *"
-    #       filters:
-    #         branches:
-    #           only: master
+    triggers:
+      - schedule:
+          cron: "0 3 * * *"
+          filters:
+            branches:
+              only: master
     jobs:
       - update-dependencies
       - build-java-8:
