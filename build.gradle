@@ -1,5 +1,5 @@
 plugins {
-  id 'org.ajoberstar.defaults' version '0.10.0-milestone.11'
+  id 'org.ajoberstar.defaults' version '0.10.0'
   id 'java'
   id 'java-gradle-plugin'
   // TODO remove when Gradle dependency locking is available
@@ -9,6 +9,13 @@ plugins {
 group = 'org.ajoberstar'
 
 sourceCompatibility = '1.8'
+
+gitPublish {
+  branch = 'gh-pages'
+  contents {
+    from 'src'
+  }
+}
 
 repositories {
   mavenCentral()
