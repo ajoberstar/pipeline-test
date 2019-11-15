@@ -1,10 +1,10 @@
 plugins {
-  id 'org.ajoberstar.defaults' version '0.10.0'
+  id 'org.ajoberstar.defaults' version '0.15.1'
   id 'java'
   id 'java-gradle-plugin'
-  // TODO remove when Gradle dependency locking is available
-  id 'nebula.dependency-lock' version '5.0.4'
 }
+
+apply from: 'gradle/locking.gradle'
 
 group = 'org.ajoberstar'
 
@@ -32,5 +32,11 @@ dependencies {
 stutter {
   java(8) {
     compatibleRange '4.6'
+  }
+  java(11) {
+    compatibleRange '5.0'
+  }
+  java(13) {
+    compatibleRange '6.0'
   }
 }
