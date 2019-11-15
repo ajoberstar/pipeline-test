@@ -9,5 +9,5 @@ inputs:
     default: "java -version"
 runs:
   using: "docker"
-  image: "docker://azul/zulu-openjdk-debian:${{ inputs.java-version }}"
+  image: "docker://azul/zulu-openjdk-debian:latest"
   entrypoint: ${{ inputs.command }}
