@@ -23,4 +23,7 @@ jobs:
       - uses: "actions/setup-java@master"
         with:
           java-version: 11
-      - run: "./gradlew publish publishPlugins"
+      - name: "Gradle publish"
+        env:
+          GRADLE_OPTS: "-Pgradle.publish.key=${{ secrets.gradle-plugin-key }} -Pgradle.publish.secret=${{ secrets.gradle-plugin-secret }}"
+        run: "./gradlew publish publishPlugins"
