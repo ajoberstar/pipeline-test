@@ -25,5 +25,6 @@ jobs:
           java-version: 11
       - name: "Gradle publish"
         env:
-          GRADLE_ARGS: "-Pgradle.publish.key=${{ secrets.gradle-plugin-key }} -Pgradle.publish.secret=${{ secrets.gradle-plugin-secret }}"
+          ORG_GRADLE_PROJECT_PUBLISH_KEY: ${{ secrets.gradle-plugin-key }}
+          ORG_GRADLE_PROJECT_PUBLISH_SECRET: ${{ secrets.gradle-plugin-secret }}
         run: "./gradlew publish publishPlugins"
