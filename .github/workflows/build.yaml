@@ -1,6 +1,6 @@
 on: [push, pull_request]
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -10,4 +10,4 @@ jobs:
       - uses: "actions/setup-java@master"
         with:
           java-version: ${{ matrix.java }}
-      - run: "java -version"
+      - run: "./gradlew check"
