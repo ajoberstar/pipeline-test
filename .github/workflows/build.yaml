@@ -6,4 +6,5 @@ jobs:
       matrix:
         java: [8, 11, 13]
     steps:
+      - uses: "actions/checkout"
       - uses: "./.github/actions/openjdk"
