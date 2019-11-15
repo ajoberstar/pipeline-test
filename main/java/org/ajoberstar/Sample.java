@@ -9,6 +9,6 @@ public class Sample {
 
   public static void main(String[] args) {
     logger.info("Stuff: {}", args[0]);
-    ObjectUtils.anyNotNull(null, null, "stuff");
+    ObjectUtils.equals(null, "stuff");
   }
 }
