@@ -1,8 +1,8 @@
 plugins {
   id 'org.ajoberstar.defaults' version '0.15.1'
   id 'org.ajoberstar.stutter' version '0.5.1'
-  id 'java'
   id 'java-gradle-plugin'
+  id 'java-library'
 }
 
 apply from: 'gradle/locking.gradle'
@@ -40,4 +40,22 @@ stutter {
   java(13) {
     compatibleRange '6.0'
   }
+}
+
+pluginBundle {
+    website = 'https://github.com/ajoberstar/pipeline-test'
+    vcsUrl = 'https://github.com/ajoberstar/pipeline-test.git'
+    description = 'The Groovy way to use Git'
+    plugins {
+        myPlugin {
+            id = 'org.ajoberstar.pipeline-test'
+            displayName = 'A test of pipelines'
+            tags = []
+        }
+    }
+    mavenCoordinates {
+        groupId = project.group
+        artifactId = project.name
+        version = project.version
+    }
 }
