@@ -7,4 +7,7 @@ jobs:
         java: [8, 11, 13]
     steps:
       - uses: "actions/checkout@master"
-      - uses: "./.github/actions/openjdk"
+      - uses: "actions/setup-java@master"
+        with:
+          java-version: ${{ matrix.java }}
+      - run: "java -version"
