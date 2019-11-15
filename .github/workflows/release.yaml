@@ -1,0 +1,27 @@
+on:
+  push:
+    tags:
+      - *
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [8, 11, 13]
+      fail-fast: false
+    steps:
+      - uses: "actions/checkout@master"
+      - uses: "actions/setup-java@master"
+        with:
+          java-version: ${{ matrix.java }}
+      - run: "./gradlew check --continue"
+  publish:
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - uses: "actions/checkout@master"
+      - uses: "actions/setup-java@master"
+        with:
+          java-version: 11
+      - run:
+          "./gradlew publish publishPlugins"
