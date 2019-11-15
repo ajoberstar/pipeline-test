@@ -50,7 +50,7 @@ pluginBundle {
         myPlugin {
             id = 'org.ajoberstar.pipeline-test'
             displayName = 'A test of pipelines'
-            tags = []
+            tags = ['dummy']
         }
     }
     mavenCoordinates {
