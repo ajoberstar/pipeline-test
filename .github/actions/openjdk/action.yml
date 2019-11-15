@@ -10,5 +10,4 @@ inputs:
 runs:
   using: "docker"
   image: "docker://azul/zulu-openjdk-debian:${{ inputs.java-version }}"
-  entrypoint:
-    - ${{ inputs.command }}
+  entrypoint: ${{ inputs.command }}
