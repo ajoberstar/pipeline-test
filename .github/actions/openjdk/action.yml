@@ -1,0 +1,14 @@
+name: "Zulu OpenJDK"
+description: "Execute a command within Zulu OpenJDK"
+inputs:
+  java-version:
+    description: "The major version of Java to run under."
+    default: latest
+  command:
+    description: "The command to execute."
+    default: "java -version"
+runs:
+  using: "docker"
+  image: "docker://azul/zulu-openjdk-debian:${{ inputs.java-version }}"
+  entrypoint:
+    - ${{ inputs.command }}

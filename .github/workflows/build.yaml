@@ -1,0 +1,8 @@
+on: [push, pull_request]
+jobs:
+  build:
+    strategy:
+      matrix:
+        java: [8, 11, 13]
+    steps:
+      - uses: "./.github/actions/openjdk"
