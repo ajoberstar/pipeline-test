@@ -11,16 +11,16 @@ jobs:
         java: [8, 11, 13]
       fail-fast: false
     steps:
-      - uses: "actions/checkout@master"
+      - uses: "actions/checkout@v2"
         with:
           fetch-depth: 0
       - name: "Fetch all tags"
         run: "git fetch origin +refs/tags/*:refs/tags/*"
-      - uses: "actions/setup-java@master"
+      - uses: "actions/setup-java@v1"
         with:
           java-version: ${{ matrix.java }}
       - name: "Cache Gradle wrapper"
-        uses: "actions/cache@master"
+        uses: "actions/cache@v1"
         with:
           path: "~/.gradle/wrapper"
           key: "gradle-wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}"
