@@ -19,5 +19,10 @@ jobs:
       - uses: "actions/setup-java@master"
         with:
           java-version: ${{ matrix.java }}
+      - name: "Cache Gradle wrapper"
+        uses: "actions/cache@master"
+        with:
+          path: "~/.gradle/wrapper"
+          key: "gradle-wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}"
       - name: "Gradle check"
         run: "./gradlew check"
