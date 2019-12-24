@@ -12,6 +12,10 @@ jobs:
       fail-fast: false
     steps:
       - uses: "actions/checkout@master"
+        with:
+          fetch-depth: 0
+      - name: "Fetch all tags"
+        run: "git fetch origin +refs/tags/*:refs/tags/*"
       - uses: "actions/setup-java@master"
         with:
           java-version: ${{ matrix.java }}
