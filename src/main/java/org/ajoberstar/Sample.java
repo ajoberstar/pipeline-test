@@ -8,7 +8,7 @@ public class Sample {
   private static final Logger logger = LoggerFactory.getLogger(Sample.class);
 
   public static void main(String[] args) {
-    logger.info("Stuff: {}", args[0]);
+    logger.info("Things: {}", args[0]);
     ObjectUtils.equals(null, "stuff");
   }
 }
