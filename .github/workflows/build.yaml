@@ -37,4 +37,4 @@ jobs:
           path: "~/.gradle/caches"
           key: "gradle-caches-${{ runner.os }}-${{ hashFiles('**/gradle/dependency-locks/*.lockfile') }}"
       - name: "Gradle check"
-        run: "./gradlew check --console=plain --stacktrace"
+        run: "./gradlew check --continue"
