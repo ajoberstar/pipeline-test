@@ -30,7 +30,7 @@ jobs:
         uses: "actions/cache@v1"
         with:
           path: "~/.gradle/notifications"
-          key: "gradle-wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}"
+          key: "gradle-notifications-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}"
       - name: "Cache Gradle dependencies"
         uses: "actions/cache@v1"
         with:
